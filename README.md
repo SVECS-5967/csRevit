@@ -17,36 +17,18 @@ When you publish a new tool to your network, users simply click **"Sync Tools"**
 
 ## ✨ Why Enterprise BIM Teams Choose csRevit
 * 🚀 **Zero-Restart Deployments:** Update tools, rebuild the UI, and deploy to the entire firm mid-session. No more asking 100 architects to close Revit just so you can update a DLL.
-* 📂 **Folder-Based UI Generation:** Create tabs, panels, dropdowns, true split-buttons, and stacked columns just by naming Windows folders. Zero C# UI coding required.
+* 📂 **Folder-Based UI Generation:** Create tabs, panels, dropdowns, true split-buttons, and stacked columns just by naming Windows         folders. Zero C# UI coding required.
 * 🧬 **Multi-Version Concurrency:** Run Revit 2024 (.NET 4.8) and Revit 2025 (.NET 8.0) simultaneously without file lock crashes.
 * 🛡️ **The Hybrid SDK:** Seamlessly link standard pushbuttons to persistent background services and native Dockable Panes.
-* 🧩 **Multi-Tool Isolation (`class.txt`):** Compile dozens of commands into a single DLL, and let our engine automatically isolate and deploy them to specific buttons across your ribbon[cite: 1].
-* 🔍 **Spotlight Search:** A built-in command palette[cite: 1]. Users can type to search, run, favorite, or assign custom keyboard shortcuts to any tool[cite: 1].
-* 📊 **Admin Analytics:** Secure, centralized telemetry tracking tool usage, success rates, and ROI across your entire firm[cite: 1].
+* 🧩 **Multi-Tool Isolation (`class.txt`):** Compile dozens of commands into a single DLL, and let our engine automatically isolate and deploy them to specific buttons across your ribbon.
+* 🔍 **Spotlight Search:** A built-in command palette. Users can type to search, run, favorite, or assign custom keyboard shortcuts to any tool.
+* 📊 **Admin Analytics:** Secure, centralized telemetry tracking tool usage, success rates, and ROI across your entire firm.
 
----
-
-## 💻 How It Works (Zero-Code UI)
-
-Creating a highly complex, enterprise-grade Revit Ribbon is as simple as creating Windows folders on your Master Network Drive[cite: 1]:
-
-
-csRevit_Core (Master Network Drive)
-├── [All] General Tools.tab               
-│   ├── 01_Modify.panel                   
-│   │   ├── Export PDF.pushbutton         <-- 1. Standard Button
-│   │   └── Company Standards.urlbutton   <-- 2. URL/Link Button
-│   │
-│   └── 02_Advanced.panel                 
-│       ├── Model Check.pulldown          <-- 3. Pulldown Menu
-│       ├── Quick Select.splitbutton      <-- 4. True Split Button 
-│       └── 03_Alignment.stack            <-- 5. Vertical Stacked Buttons
-The engine handles all the complex API registrations, natural sorting, and icon resizing automatically[cite: 1].
 
 💼 Licensing & How to Buy
-The csRevit Framework is a commercial, enterprise-grade product designed to save BIM teams hundreds of hours in deployment and UI management[cite: 1].
+The csRevit Framework is a commercial, enterprise-grade product designed to save BIM teams hundreds of hours in deployment and UI management.
 
-This repository serves as our public documentation and issue tracker[cite: 1]. The compiled framework .bundle, Sync Engine, and proprietary source code are securely distributed to licensed clients[cite: 1].
+This repository serves as our public documentation and issue tracker. The compiled framework .bundle, Sync Engine, and proprietary source code are securely distributed to licensed clients.
 
 Ready to transform your firm's Revit environment?
 
@@ -55,9 +37,11 @@ Ready to transform your firm's Revit environment?
 🛒 [Purchase a Commercial License Here](https://appstore.svecs.in/checkout/buy/38ffaf7c-d06c-4665-b309-8a50b18fae45)
 
 📚 Documentation & Support
+
 Whether you are a BIM Manager deploying the framework, or a C# Developer building tools on top of it, everything you need is in our official documentation:
 
 🚀 Getting Started & Installation Guide
+
 Welcome to the csRevit Framework! This guide will walk you through installing the framework, activating your license, configuring your network paths, and syncing your tools for the very first time.
 
 Because csRevit uses a dynamically generated UI, you only need to install the core framework once. After that, all tool updates, new panels, and background services are delivered instantly over the network.
@@ -126,9 +110,11 @@ The framework will quickly download the latest scripts and folder structures fro
 Instantly, your Revit Ribbon will rebuild itself, generating all of your firm's custom Tabs, Panels, Dropdowns, and Buttons.
 
 🎉 You are now ready to work!
+
 Note: You never need to restart Revit to get new tools. Whenever your BIM Manager announces a new tool, just click Sync Tools again to receive it instantly.
 
 6. Developer Setup: The Local Sandbox
+
 If you are a C# Developer or BIM Manager tasked with building new tools for the framework, you need to set up your local DEV Sandbox.
 
 When you write new C# commands, you do not test them on the live Master Network Drive. Instead, you deploy them locally to test them safely.
@@ -156,7 +142,9 @@ Browse to the specific panel in the Master Network Drive where you want it to li
 
 Click Publish Live. The framework will automatically move the tool to the network and trigger a global sync for your machine.
 
+
 🏗️ The Master Folder Tree (UI Configuration)
+
 
 Anatomy of a Tool Folder
 
@@ -180,6 +168,7 @@ class.txt (Optional): Used for Multi-Tool DLLs. If your DLL contains multiple co
 
 
 👨‍💻 Developer Guide & C# Boilerplates
+
 
 To write a tool that integrates perfectly into the csRevit Framework, you must follow the 6 Golden Rules:
 
@@ -210,7 +199,7 @@ Dockable Panes (Native Integration): An advanced Modeless window that snaps dire
 
 How to deploy: Because Dockable Panes must be registered when Revit first boots up, your standard .pushbutton folders cannot do this. You must build an IExternalApplication and deploy it to the DEV\Services folder! The csRevit Bootstrapper will automatically register it on startup.
 
-Pushbutton Boilerplates (.pushbutton)
+1. Pushbutton Boilerplates (.pushbutton)
 
 A. Basic Script (No Custom UI)
 C#
@@ -338,10 +327,12 @@ namespace csRevit_Tools
 }
 
 
-Data-Driven Button Boilerplates
+2. Data-Driven Button Boilerplates
 
 A. Toggle / Switch Button Boilerplate (.toggle)
 Toggle buttons automatically swap between an "On" and "Off" icon. The csRevit framework handles saving this state to the registry before it runs your command. Your script just needs to read the new state and act on it.
+
+
 
 C#
 using Autodesk.Revit.DB;
@@ -374,9 +365,13 @@ namespace csRevit_Tools
     }
 }
 
-Combo Box Boilerplate (.combobox)
+
+
+B. Combo Box Boilerplate (.combobox)
 
 When a user selects an item from your dropdown (defined in config.json), the framework saves their selection to the Registry and immediately triggers your command.
+
+
 
 C#
 using Autodesk.Revit.DB;
@@ -404,9 +399,15 @@ namespace csRevit_Tools
     }
 }
 
-Background Event Tracker Boilerplate.
+
+
+3. Background Event Tracker Boilerplate.
+
 
 To run tasks silently in the background (like auditing a file on Open, or syncing data on Save), you must hook into Revit's native application events using an IExternalApplication deployed to the Services folder.
+
+
+
 
 C#
 using Autodesk.Revit.DB;
@@ -452,7 +453,8 @@ namespace csRevit_Tools
 }
 
 
-The "Hybrid Connection" SDK (Service + Button)
+
+4. The "Hybrid Connection" SDK (Service + Button)
 
 The absolute best practice for complex enterprise tools (like Dockable Panes or dynamic UI Updaters) is the Hybrid Approach.
 Build your background logic inside an IExternalApplication (placed in the Services folder). It must implement IcsRevitBackgroundService from csRevit.API.
@@ -460,7 +462,10 @@ Expose a public static instance of your Service.
 Build your UI button inside a standard .pushbutton folder (using IExternalCommand).
 The csRevit Linker: When a user clicks the button, it safely checks the running service's State, passes the ExternalCommandData to the background, and triggers execution!
 
+
 Step 1: The Enterprise Background Service (In the Services Folder)
+
+
 
 C#
 using Autodesk.Revit.DB;
@@ -516,7 +521,12 @@ namespace csRevit_MyHybridTool
         }
     }
 }
+
+
+
 Step 2: The Clickable Button (In the .pushbutton Folder)
+
+
 
 C#
 using Autodesk.Revit.DB;
@@ -553,7 +563,12 @@ namespace csRevit_MyHybridTool
         }
     }
 }
-6.6 The Ultimate Automated Tool Project File (.csproj)
+
+
+
+5. The Ultimate Automated Tool Project File (.csproj)
+
+
 Use this template for every new tool project. This MSBuild configuration is designed to be the ultimate developer asset. It does three amazing things automatically when you press Build in Visual Studio:
 
 Multi-targets both .NET 4.8 and .NET 8.0.
@@ -561,6 +576,8 @@ Multi-targets both .NET 4.8 and .NET 8.0.
 Evaluates the destination folders and auto-generates your class.txt files on the fly, saving you from manual folder configuration for multi-tool DLLs.
 
 Automatically deploys to both the DEV\Services folder (for background logic) AND your DEV\...\.pushbutton folders (for UI interaction).
+
+
 
 XML
 <Project Sdk="Microsoft.NET.Sdk">
@@ -649,7 +666,10 @@ XML
 
 </Project>
 
-Background Services & Dockable Panes
+
+
+6. Background Services & Dockable Panes
+
 
 Beyond standard buttons, csRevit functions as a complete microkernel that can manage background applications and silent event triggers.
 
