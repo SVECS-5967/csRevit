@@ -30,7 +30,7 @@ When you publish a new tool to your network, users simply click **"Sync Tools"**
 
 Creating a highly complex, enterprise-grade Revit Ribbon is as simple as creating Windows folders on your Master Network Drive[cite: 1]:
 
-```text
+
 csRevit_Core (Master Network Drive)
 ├── [All] General Tools.tab               
 │   ├── 01_Modify.panel                   
@@ -158,7 +158,7 @@ Click Publish Live. The framework will automatically move the tool to the networ
 
 🏗️ The Master Folder Tree (UI Configuration)
 
-![csRevit Folder Structure](https://raw.githubusercontent.com/SVECS-5967/csRevit/main/docs/Folder%20Structure.png)
+![csRevit Folder Structure](docs/assets/Folder_Structure.png)
 
 👨‍💻 Developer Guide & C# Boilerplates
 
