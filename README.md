@@ -169,7 +169,7 @@ class.txt (Optional): Used for Multi-Tool DLLs. If your DLL contains multiple co
 
 👨‍💻 Developer Guide & C# Boilerplates
 
-
+```csharp
 To write a tool that integrates perfectly into the csRevit Framework, you must follow the 6 Golden Rules:
 
 Implement Autodesk.Revit.UI.IExternalCommand (for UI tools) or IExternalApplication (for Background Services/Dockable Panes).
@@ -203,9 +203,9 @@ How to deploy: Because Dockable Panes must be registered when Revit first boots 
 
 A. Basic Script (No Custom UI)
 
-docs/assets/Pushbutton Boilerplates (.pushbutton).cs
 
 ```csharp
+
 using System;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -686,6 +686,8 @@ Note on Syncing: While UI buttons (.pushbutton) update instantly mid-session whe
 
 Found a bug or have a feature request?
 We actively maintain and improve the csRevit Framework. Please use our public issue tracker:
+
+```
 
 🐛 Report a Bug
 
