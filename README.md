@@ -158,6 +158,8 @@ Click Publish Live. The framework will automatically move the tool to the networ
 
 🏗️ The Master Folder Tree (UI Configuration)
 
+![csRevit Folder Structure](docs/Folder Structure.png)
+
 👨‍💻 Developer Guide & C# Boilerplates
 
 🔌 Hybrid SDK & Dockable Panes
