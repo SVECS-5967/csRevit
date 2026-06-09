@@ -205,6 +205,35 @@ A. Basic Script (No Custom UI)
 
 https://github.com/SVECS-5967/csRevit/blob/096434d013c32e9984cbb65e8653e0da86d909a5/docs/assets/Pushbutton%20Boilerplates%20(.pushbutton).cs
 
+using System;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+using Autodesk.Revit.Attributes;
+
+namespace csRevit_Tools
+{
+    [Transaction(TransactionMode.Manual)]
+    [DisplayName("Quick Format")]
+    [Description("Formats the active view.")]
+    public class QuickFormatCommand : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            Document doc = commandData.Application.ActiveUIDocument.Document;
+            try
+            {
+                // YOUR LOGIC HERE
+                return Result.Succeeded; 
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return Result.Failed; // Automatically launches the csRevit Debug Console
+            }
+        }
+    }
+}
+
 B. Modal Dialog Boilerplate
 
 
