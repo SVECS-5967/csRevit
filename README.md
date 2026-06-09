@@ -205,6 +205,7 @@ A. Basic Script (No Custom UI)
 
 docs/assets/Pushbutton Boilerplates (.pushbutton).cs
 
+```csharp
 using System;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -220,6 +221,7 @@ namespace csRevit_Tools
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             Document doc = commandData.Application.ActiveUIDocument.Document;
+
             try
             {
                 // YOUR LOGIC HERE
