@@ -59,9 +59,14 @@ Whether you are a BIM Manager deploying the framework, or a C# Developer buildin
 
 🚀 Getting Started & Installation Guide
 
-🏗️ The Master Folder Tree Layout
+🏗️ The Master Folder Tree (UI Configuration)
 
-Found a bug or have a feature request? We actively maintain and improve the csRevit Framework[cite: 1]. Please use our public issue tracker:
+👨‍💻 Developer Guide & C# Boilerplates
+
+🔌 Hybrid SDK & Dockable Panes
+
+Found a bug or have a feature request?
+We actively maintain and improve the csRevit Framework. Please use our public issue tracker:
 
 🐛 Report a Bug
 
