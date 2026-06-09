@@ -50,13 +50,9 @@ This repository serves as our public documentation and issue tracker[cite: 1]. T
 
 Ready to transform your firm's Revit environment?
 
-🚀 Start your 15-Day Free Trial Here
+🚀 [Start your 15-Day Free Trial Here](https://appstore.svecs.in/checkout/buy/bade39f5-94a2-45ca-94a0-5745a00d08bb)
 
-(https://appstore.svecs.in/checkout/buy/bade39f5-94a2-45ca-94a0-5745a00d08bb)
-
-🛒 Purchase a Commercial License Here
-
-(https://appstore.svecs.in/checkout/buy/38ffaf7c-d06c-4665-b309-8a50b18fae45)
+🛒 [Purchase a Commercial License Here](https://appstore.svecs.in/checkout/buy/38ffaf7c-d06c-4665-b309-8a50b18fae45)
 
 📚 Documentation & Support
 Whether you are a BIM Manager deploying the framework, or a C# Developer building tools on top of it, everything you need is in our official documentation:
