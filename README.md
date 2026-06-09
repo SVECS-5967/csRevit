@@ -47,51 +47,39 @@ Welcome to the csRevit Framework! This guide will walk you through installing th
 Because csRevit uses a dynamically generated UI, you only need to install the core framework once. After that, all tool updates, new panels, and background services are delivered instantly over the network.
 
 1. Prerequisites
+
 Before installing, ensure your system meets the following requirements:
-
 Autodesk Revit: Revit 2019 through Revit 2025 installed.
-
 Operating System: Windows 10 or Windows 11.
-
 Network Access: Read-access to your firm's Master Network Drive (e.g., Z:\BIM\csRevit_Master).
-
 License: A valid csRevit Trial or Commercial License Key. (Don't have one? Get it from the (https://appstore.svecs.in).
 
 2. Installing the Bootstrapper
+
 The csRevit Bootstrapper is a lightweight engine that loads when Revit starts. It acts as the bridge between Revit and your dynamic tool folders.
 
 Step-by-Step Installation:
-
 Download the latest csRevit_Installer.exe from your firm's IT portal or the csRevit App Store (https://appstore.svecs.in).
-
 Run the installer.
-
 The installer will automatically place the csRevit.bundle into your local Autodesk Add-ins folder:
-
 C:\Users\%USERNAME%\AppData\Roaming\Autodesk\ApplicationPlugins\csRevit.bundle
-
 The installation is complete. Open Autodesk Revit.
 
 3. First Launch & Activation
+
 When you open Revit for the first time after installation, the framework will attempt to verify your license securely.
-
 A License Activation window will appear on your screen.
-
 Paste your 15-Day Free Trial or Commercial License Key into the text box.
-
 Click Activate License.
 
 The framework will verify the key. Once successful, it will automatically perform an initial Cloud Sync to download the core UI dependencies.
 
 4. Configuring the Master Network Drive
+
 To receive your firm's custom tools, you must tell the framework where to find them.
-
 Look at your Revit Ribbon. You will see a new tab called csRevit Core.
-
 Click the Global Settings button (the gear icon).
-
 The Configuration Registry window will open. Look for the Master Network Path field.
-
 Click Browse... and navigate to your firm's centralized csRevit Master folder (e.g., Z:\BIM\csRevit_Master).
 
 Optional: If you only want to see tools specific to your role, type your discipline (e.g., Architecture or MEP) into the Discipline Filter box. Otherwise, leave it as All.
@@ -99,14 +87,12 @@ Optional: If you only want to see tools specific to your role, type your discipl
 Click Save Configuration.
 
 5. Syncing Your Tools (The Magic Step)
+
 Now that your network path is configured, it is time to build your customized Revit Ribbon!
 
 Go to the csRevit Core tab.
-
 Click the large Sync Tools button.
-
 The framework will quickly download the latest scripts and folder structures from your firm's Master Drive.
-
 Instantly, your Revit Ribbon will rebuild itself, generating all of your firm's custom Tabs, Panels, Dropdowns, and Buttons.
 
 🎉 You are now ready to work!
@@ -116,30 +102,18 @@ Note: You never need to restart Revit to get new tools. Whenever your BIM Manage
 6. Developer Setup: The Local Sandbox
 
 If you are a C# Developer or BIM Manager tasked with building new tools for the framework, you need to set up your local DEV Sandbox.
-
 When you write new C# commands, you do not test them on the live Master Network Drive. Instead, you deploy them locally to test them safely.
-
 Open your Windows File Explorer.
-
 Navigate to your local csRevit Application Data folder:
-
 C:\Users\%USERNAME%\AppData\Roaming\csRevit\DEV
-
 This is your personal sandbox. Any folders (like .tab, .panel, or .pushbutton) you create in here will appear in Revit under a special 🛠️ DEV LAB tab.
-
 Configure your Visual Studio .csproj to deploy your compiled .dll files directly into this DEV folder. (See the Developer Guide for the automated .csproj boilerplate).
-
 Whenever you successfully build your code in Visual Studio, simply click Reload UI on the csRevit Core tab to test your new tool instantly!
-
 Publishing from DEV to Master
 Once you have tested a tool in your local DEV folder and confirmed it works perfectly:
-
 Click the Publish Tool button on the csRevit Core tab.
-
 Select your tool from the dropdown list.
-
 Browse to the specific panel in the Master Network Drive where you want it to live.
-
 Click Publish Live. The framework will automatically move the tool to the network and trigger a global sync for your machine.
 
 
@@ -149,19 +123,12 @@ Click Publish Live. The framework will automatically move the tool to the networ
 Anatomy of a Tool Folder
 
 Once you create a tool folder (e.g., My Tool.pushbutton), it must contain specific assets to render and execute correctly in Revit.
-
 R24L (Folder): Contains the .NET 4.8 compiled .dll for Revit 2024 and older.
-
 R25H (Folder): Contains the .NET 8.0 compiled .dll for Revit 2025 and newer.
-
 icon.png: The 32x32 image for the button. (Note: If this folder is placed inside a .stack container, the framework will automatically shrink this image to 16x16 for you!)
-
 help.txt (Optional): A text file. The contents will automatically become the F1 extended tooltip in Revit.
-
 demo.mp4 (Optional): A short video file that will automatically play when the user hovers over the button.
-
 config.json (Required ONLY for Comboboxes): Contains the dropdown list array.
-
 class.txt (Optional): Used for Multi-Tool DLLs. If your DLL contains multiple commands, this text file tells the framework exactly which C# Class Name to bind to this specific folder. (Note: This can be generated automatically by the Developer .csproj file!)
 
 ![csRevit Folder Structure](docs/assets/Folder_Structure.png)
@@ -169,37 +136,26 @@ class.txt (Optional): Used for Multi-Tool DLLs. If your DLL contains multiple co
 
 👨‍💻 Developer Guide & C# Boilerplates
 
-```csharp
 To write a tool that integrates perfectly into the csRevit Framework, you must follow the 6 Golden Rules:
-
 Implement Autodesk.Revit.UI.IExternalCommand (for UI tools) or IExternalApplication (for Background Services/Dockable Panes).
-
 Add the [Transaction(TransactionMode.Manual)] attribute (for Commands).
-
 Use UI Attributes ([DisplayName] and [Description]) to control how the button appears in search/tooltips, overriding the class name.
-
 Multi-target the project for both .NET 4.8 (R24L) and .NET 8.0 (R25H).
-
 Reference the csRevit API: You must reference csRevit.API.dll. The csRevit Bootstrapper automatically loads this library into Revit's memory on startup.
-
 Set "Copy Local = False": For all Revit API references AND your csRevit.API.dll reference, you MUST set Copy Local to False (or <Private>False</Private> in the XML). This prevents fatal reference collisions.
 
-6.1 Advanced UI: Modal, Modeless, and Dockable Panes
+1.  Advanced UI: Modal, Modeless, and Dockable Panes
+
 When building a custom WPF or WinForms interface, you must decide how it interacts with Revit. The csRevit Framework natively supports all three paradigms:
-
 Modal Dialogs (The Standard Way): A Modal window locks the Revit interface. The user cannot pan or select elements until they close the dialog. Because Revit is paused, your code retains full control of the API.
-
 How to deploy: Build a standard IExternalCommand, place it in a .pushbutton folder, and launch your WPF window using myWindow.ShowDialog();.
-
 Modeless Dialogs (Floating Palettes): A Modeless window floats on top of the screen but leaves Revit completely active. Because the user can interact with Revit, your window loses the "API Context". You must use Revit's IExternalEventHandler and ExternalEvent framework to modify the model safely.
-
 How to deploy: Build a standard IExternalCommand, place it in a .pushbutton folder, and launch your WPF window using myWindow.Show();.
-
 Dockable Panes (Native Integration): An advanced Modeless window that snaps directly into the side of the Revit interface (like the Properties Palette).
-
 How to deploy: Because Dockable Panes must be registered when Revit first boots up, your standard .pushbutton folders cannot do this. You must build an IExternalApplication and deploy it to the DEV\Services folder! The csRevit Bootstrapper will automatically register it on startup.
 
-1. Pushbutton Boilerplates (.pushbutton)
+
+2. Pushbutton Boilerplates (.pushbutton)
 
 A. Basic Script (No Custom UI)
 
@@ -235,11 +191,11 @@ namespace csRevit_Tools
         }
     }
 }
-
+```
 
 B. Modal Dialog Boilerplate
 
-
+```csharp
 C#
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -266,12 +222,13 @@ namespace csRevit_Tools
         }
     }
 }
-
+```
 
 C. Modeless Dialog Boilerplate (Floating Palette)
 
 To launch a Modeless window, you must pass an IExternalEventHandler into the window so it can "ping" Revit when it needs to make database changes.
 
+```csharp
 C#
 using System;
 using Autodesk.Revit.DB;
@@ -329,6 +286,7 @@ namespace csRevit_Tools
     }
 }
 
+```
 
 2. Data-Driven Button Boilerplates
 
@@ -336,7 +294,7 @@ A. Toggle / Switch Button Boilerplate (.toggle)
 Toggle buttons automatically swap between an "On" and "Off" icon. The csRevit framework handles saving this state to the registry before it runs your command. Your script just needs to read the new state and act on it.
 
 
-
+```csharp
 C#
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -368,13 +326,13 @@ namespace csRevit_Tools
     }
 }
 
-
+```
 
 B. Combo Box Boilerplate (.combobox)
 
 When a user selects an item from your dropdown (defined in config.json), the framework saves their selection to the Registry and immediately triggers your command.
 
-
+```csharp
 
 C#
 using Autodesk.Revit.DB;
@@ -402,7 +360,7 @@ namespace csRevit_Tools
     }
 }
 
-
+```
 
 3. Background Event Tracker Boilerplate.
 
@@ -410,7 +368,7 @@ namespace csRevit_Tools
 To run tasks silently in the background (like auditing a file on Open, or syncing data on Save), you must hook into Revit's native application events using an IExternalApplication deployed to the Services folder.
 
 
-
+```csharp
 
 C#
 using Autodesk.Revit.DB;
@@ -455,7 +413,7 @@ namespace csRevit_Tools
     }
 }
 
-
+```
 
 4. The "Hybrid Connection" SDK (Service + Button)
 
@@ -468,7 +426,7 @@ The csRevit Linker: When a user clicks the button, it safely checks the running 
 
 Step 1: The Enterprise Background Service (In the Services Folder)
 
-
+```csharp
 
 C#
 using Autodesk.Revit.DB;
@@ -525,11 +483,11 @@ namespace csRevit_MyHybridTool
     }
 }
 
-
+```
 
 Step 2: The Clickable Button (In the .pushbutton Folder)
 
-
+```csharp
 
 C#
 using Autodesk.Revit.DB;
@@ -567,7 +525,7 @@ namespace csRevit_MyHybridTool
     }
 }
 
-
+```
 
 5. The Ultimate Automated Tool Project File (.csproj)
 
@@ -580,7 +538,7 @@ Evaluates the destination folders and auto-generates your class.txt files on the
 
 Automatically deploys to both the DEV\Services folder (for background logic) AND your DEV\...\.pushbutton folders (for UI interaction).
 
-
+```csharp
 
 XML
 <Project Sdk="Microsoft.NET.Sdk">
@@ -669,25 +627,19 @@ XML
 
 </Project>
 
-
+```
 
 6. Background Services & Dockable Panes
 
 
 Beyond standard buttons, csRevit functions as a complete microkernel that can manage background applications and silent event triggers.
-
 If you need to deploy Dockable Panes, custom IUpdater instances, or complex idle events, you must write an IExternalApplication. Place the compiled DLL inside the Services folder at the root of the Master Drive (e.g., Services\MyUpdater\R25H\MyUpdater.dll).
-
 The csRevit engine will automatically discover the service on boot, instantiate it, and execute its OnStartup() method safely.
-
 It will also gracefully execute its OnShutdown() method when the user closes Revit.
-
 Note on Syncing: While UI buttons (.pushbutton) update instantly mid-session when a user clicks "Sync", Background Services are tied directly to Revit's boot cycle. If a Service is updated mid-session, the user will receive a polite prompt advising them to restart Revit to apply the background update.
 
 Found a bug or have a feature request?
 We actively maintain and improve the csRevit Framework. Please use our public issue tracker:
-
-```
 
 🐛 Report a Bug
 
