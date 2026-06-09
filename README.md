@@ -3,7 +3,7 @@
 
 > **The ultimate decoupled architecture for Autodesk Revit.** Build, deploy, and manage enterprise BIM tools across your firm instantly—without ever forcing users to restart Revit.
 
-![csRevit Hero Banner](docs/assets/hero-banner.png)
+[![csRevit Hero Banner](docs/assets/icon.png)](https://appstore.svecs.in)
 
 ## 📖 Stop Wasting Time on Deployment. Focus on Automation.
 
