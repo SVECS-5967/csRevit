@@ -220,11 +220,10 @@ namespace csRevit_Tools
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             Document doc = commandData.Application.ActiveUIDocument.Document;
-            
             try
             {
                 // YOUR LOGIC HERE
-                return Result.Succeeded; 
+                return Result.Succeeded;
             }
             catch (Exception ex)
             {
@@ -234,6 +233,7 @@ namespace csRevit_Tools
         }
     }
 }
+
 
 B. Modal Dialog Boilerplate
 
